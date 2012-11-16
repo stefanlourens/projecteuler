@@ -1,28 +1,26 @@
-package problems;
+package org.projecteuler;
 
 /*
- * By listing the first six prime numbers: 2, 3, 5, 7, 11, and 13, we can see that the 6th prime is 13.
+ * The sum of the primes below 10 is 2 + 3 + 5 + 7 = 17.
  *
- * What is the 10 001st prime number?
- *
+ * Find the sum of all the primes below two million.
+ * 
  */
-public class Problem_0007 {
+public class Problem_0010 {
 
-    private static int solve() {
-        final int nthPrimeToFind = 10001;
-        int primeCount = 1;
-
-        for (int i = 3; true; i += 2) {
+    private static long solve() {
+        final int max = 2000000;
+        long primeSum = 2;
+        
+        for (int i = 3; i < max; i +=2) {
             if (isPrime(i)) {
-                primeCount++;
-                
-                if (primeCount == nthPrimeToFind) {
-                    return i;
-                }
+                primeSum += i;
             }
         }
+        
+        return primeSum;
     }
-
+    
     private static boolean isPrime(int num) {
         switch(num) {
             case 1: return false;

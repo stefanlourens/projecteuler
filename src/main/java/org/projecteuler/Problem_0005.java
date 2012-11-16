@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 /*
  * 2520 is the smallest number that can be divided by each of the numbers from 1

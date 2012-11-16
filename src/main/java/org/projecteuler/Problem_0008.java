@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 /*
  * Find the greatest product of five consecutive digits in the 1000-digit number.

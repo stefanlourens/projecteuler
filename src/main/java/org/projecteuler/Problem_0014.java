@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 /* @See http://projecteuler.net/problem=14 
  * 
@@ -21,7 +21,7 @@ package problems;
  */
 public class Problem_0014 {
 
-    private static final int MAX_START = 1000000;
+    private static final int MAX_START = 1_000_000;
 
     private static long solve() {
         long answer = 0;

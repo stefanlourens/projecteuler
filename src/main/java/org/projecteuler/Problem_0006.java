@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 /*
  * The sum of the squares of the first ten natural numbers is, 

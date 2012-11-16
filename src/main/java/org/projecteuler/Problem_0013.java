@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 import java.io.BufferedReader;
 import java.io.IOException;

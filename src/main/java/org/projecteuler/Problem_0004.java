@@ -1,4 +1,4 @@
-package problems;
+package org.projecteuler;
 
 /**
  * A palindromic number reads the same both ways. 
