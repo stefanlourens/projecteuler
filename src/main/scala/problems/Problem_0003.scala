@@ -8,7 +8,7 @@ import math.{ floor, sqrt }
  */
 object Problem_0003 extends Problem {
 
-  def isPrime(n: Int) = {
+  def isPrime(n: Long) = {
     val maxFactor = floor(sqrt(n)).toInt
     2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0)
   }
