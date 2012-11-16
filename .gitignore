@@ -11,3 +11,5 @@ target
 /nbproject/private/
 /build/
 /dist/
+.settings
+.worksheet
