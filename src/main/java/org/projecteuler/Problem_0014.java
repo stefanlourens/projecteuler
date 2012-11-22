@@ -21,7 +21,7 @@ package org.projecteuler;
  */
 public class Problem_0014 {
 
-    private static final int MAX_START = 1_000_000;
+    private static final int MAX_START = 1000000;
 
     private static long solve() {
         long answer = 0;
