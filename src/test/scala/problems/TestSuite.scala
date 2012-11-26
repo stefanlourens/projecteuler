@@ -8,8 +8,6 @@ class ProblemsTestSuite extends FunSuite {
   def companion[T](name: String)(implicit man: Manifest[T]): T =
     Class.forName(name + "$").getField("MODULE$").get(man.erasure).asInstanceOf[T]
 
-  val result = companion[Problem]("problems.Problem_0001").answer
-
   val answers = Map(
     1  -> 233168,
     2  -> 4613732,

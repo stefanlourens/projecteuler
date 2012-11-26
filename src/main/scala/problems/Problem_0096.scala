@@ -1,6 +1,5 @@
 package problems
 
-import java.io.File
 import io.Source
 import math.floor
 
@@ -190,7 +189,7 @@ object Problem_0096 extends Problem {
   }
 
   //  private val source = Source.fromFile(new File("/Users/stefan/Projects/Personal/projecteuler/resources/96/sudoku_sample.txt"))
-  private val source = Source.fromFile(new File("/Users/stefan/Projects/Personal/projecteuler/resources/96/sudoku.txt"))
+  private val source = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0096/sudoku.txt")
   val puzzles = parse(source)
 
   def answer = puzzles foreach { puzzle => println("Starting Puzzle " + puzzle.name); puzzle.solve }
