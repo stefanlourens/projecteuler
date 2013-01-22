@@ -8,7 +8,7 @@ import io.Source
 object Problem_0013 extends Problem {
 
   val numbers = {
-    val source = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0013/numbers.txt")
+    val source = Source.fromFile("resources/0013/numbers.txt")
 
     for {
       line <- source.getLines
