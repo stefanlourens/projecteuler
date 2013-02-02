@@ -9,9 +9,6 @@ import io.Source
  */
 object Problem_0054 extends Problem {
 
-  val source = Source.fromFile("resources/0042/words.txt") mkString
-  val words = source.split(",").map { _.replaceAll("\"", "") }
-
   class Card(sig: String) extends Ordered[Card] {
     val suit: Char = sig(1)
     val value = sig(0)
