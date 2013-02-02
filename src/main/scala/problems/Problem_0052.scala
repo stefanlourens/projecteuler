@@ -17,6 +17,6 @@ object Problem_0052 extends Problem {
         val str = n.toString
         (2 to 6) map { n * _ } forall { i => (i.toString diff str).isEmpty }
       }
-  }
+  }.get
 
 }

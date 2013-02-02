@@ -1,7 +1,5 @@
 package problems
 
-import io.Source
-
 /**
  * http://projecteuler.net/problem=55
  *

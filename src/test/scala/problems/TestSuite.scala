@@ -41,7 +41,8 @@ class ProblemsTestSuite extends FunSuite {
     48 -> 9110846700L,
     52 -> 142857,
     54 -> 376,
-    55 -> 249
+    55 -> 249,
+    56 -> 972
     )
 
   for {
