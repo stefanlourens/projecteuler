@@ -7,7 +7,7 @@ package problems
  */
 object Problem_0009 extends Problem {
 
-  def answer =
+  def answer = {
     for {
       c <- 1 to 1000
       b <- 1 to c
@@ -15,5 +15,6 @@ object Problem_0009 extends Problem {
       if (a + b + c == 1000)
       if ((a * a) + (b * b) == (c * c))
     } yield a * b * c
+  } head
 
 }

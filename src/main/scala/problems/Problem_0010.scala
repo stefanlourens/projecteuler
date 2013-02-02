@@ -9,11 +9,10 @@ import Problem_0003.isPrime
  */
 object Problem_0010 extends Problem {
 
-  def answer = {
-    for {
-      n <- 2 #:: (3 until 10 by 2 toStream)
-      if (isPrime(n))
-    } yield n
-  } toList
+  val primes = for {
+    n <- 2L #:: (3L to Int.MaxValue by 2L).toStream
+    if (isPrime(n))
+  } yield n
 
+  def answer = primes takeWhile { _ < 2000000 } sum
 }

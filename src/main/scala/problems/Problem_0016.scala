@@ -1,7 +1,5 @@
 package problems
 
-import Character.getNumericValue
-
 /**
  * http://projecteuler.net/problem=16
  *
@@ -10,6 +8,6 @@ import Character.getNumericValue
  */
 object Problem_0016 extends Problem {
 
-  def answer = BigInt(2).pow(1000).toString map(getNumericValue(_)) sum
+  def answer = BigInt(2).pow(1000).toString map(_.asDigit) sum
 
 }
