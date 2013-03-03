@@ -31,7 +31,7 @@ object Problem_0049 extends Problem {
   
   val head =  possibles.head
   
-  //@TODO : Find numbers with commons difference
+  //@TODO : Find numbers with common difference
 
   def answer = ???
   

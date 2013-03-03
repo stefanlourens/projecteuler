@@ -15,11 +15,17 @@ object Problem_0018 extends Problem {
 	8 5 9 3
     """
     
-    //Use A*
-    
-    sealed trait Tree 
-    case class NonEmpty(val value: Int, left: Tree, right: Tree) extends Tree
-    case class Empty extends Tree
+		  
+  object Tree {
+  	def apply() = EmptyTree()
+  	def apply(value: Int, left: Tree, right: Tree) = new NonEmptyTree(value, left, right)
+  }
+  sealed trait Tree
+  case class NonEmptyTree(val value: Int, left: Tree, right: Tree) extends Tree
+  case class EmptyTree extends Tree
+  
+  
+  Tree(0, Tree(), Tree())
     
   
   def answer = ???//pathCountFrom(0, grid.origin)new Numeral(100)

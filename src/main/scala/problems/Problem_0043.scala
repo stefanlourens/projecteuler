@@ -10,11 +10,13 @@ object Problem_0043 extends Problem {
   val pandigitals = (0 to 9).mkString.permutations filter { _.head != '0' }
   val indexes = 1 to 7 zip List(2, 3, 5, 7, 11, 13, 17)
 
-  val numbers = for {
-    pan <- pandigitals
-    if (indexes.forall { case (idx, div) => pan.substring(idx, idx + 3).toInt % div == 0 })
-  } yield pan.toLong
+  def answer = {
+    val numbers = for {
+      pan <- pandigitals
+      if (indexes.forall { case (idx, div) => pan.substring(idx, idx + 3).toInt % div == 0 })
+    } yield pan.toLong
 
-  def answer = numbers sum
+    numbers sum
+  }
 
 }

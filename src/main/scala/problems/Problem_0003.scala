@@ -8,7 +8,7 @@ import math.{ floor, sqrt }
  */
 object Problem_0003 extends Problem {
   
-  def isPrime(n: Long) = {
+  def isPrime(n: Long): Boolean = {
     val primeCache = Set[Long]()
     val maxFactor = floor(sqrt(n)).toInt
     

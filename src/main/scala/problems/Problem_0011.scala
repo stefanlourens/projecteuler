@@ -11,7 +11,7 @@ object Problem_0011 extends Problem {
   type Matrix = Array[Array[Int]]
 
   val matrix: Matrix = {
-    val source = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0011/grid.txt")
+    val source = Source.fromFile("resources/0011/grid.txt")
 
     {
       for {
