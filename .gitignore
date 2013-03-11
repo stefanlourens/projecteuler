@@ -8,6 +8,7 @@ target
 .project
 .classpath
 .cache
+.idea*
 /nbproject/private/
 /build/
 /dist/
