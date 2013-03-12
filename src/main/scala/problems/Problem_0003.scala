@@ -7,11 +7,11 @@ import math.{ floor, sqrt }
  * factor of the number 600851475143 ?
  */
 object Problem_0003 extends Problem {
-  
+
   def isPrime(n: Long): Boolean = {
     val primeCache = Set[Long]()
     val maxFactor = floor(sqrt(n)).toInt
-    
+
     if (primeCache.contains(n)) true
     else if (n <= 1) false
     else if (n == 2) true
@@ -21,13 +21,13 @@ object Problem_0003 extends Problem {
         true
       } else false
     }
-  } 
+  }
 
   def answer = {
     val n = 600851475143l
     lazy val maxFactor = floor(sqrt(n)).toInt
 
-    2 :: (3 to maxFactor by 2 toList) filter (n % _ == 0) filter (isPrime(_)) max
+    (2 :: (3 to maxFactor by 2 toList) filter (n % _ == 0) filter (isPrime(_))).max
   }
 
 }

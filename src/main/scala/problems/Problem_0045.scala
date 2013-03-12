@@ -13,7 +13,7 @@ object Problem_0045 extends Problem {
     f(n) #:: seqFrom(n + 1, f)
   }
 
-  val tri = seqFrom(286, (n: Int) => 0.5 * n * (n + 1) toInt)
+  val tri = seqFrom(286, (n: Int) => (0.5 * n * (n + 1)).toInt)
   val pen = seqFrom(166, (n: Int) => n * (3 * n - 1) / 2)
   val hex = seqFrom(144, (n: Int) => n * (2 * n - 1))
 

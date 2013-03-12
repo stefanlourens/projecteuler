@@ -8,15 +8,15 @@ package problems
 object Problem_0056 extends Problem {
 
   implicit class Summable(val n: BigInt) extends AnyVal {
-    def digitalSum: Int = n.toString map { _.asDigit } sum
+    def digitalSum: Int = { n.toString map { _.asDigit } }.sum
   }
 
   def answer = {
     val sums = for {
       a <- 1 to 100
       b <- 1 to 100
-    } yield BigInt(a).pow(b) digitalSum
+    } yield BigInt(a).pow(b).digitalSum
 
-    sums max
+    sums.max
   }
 }

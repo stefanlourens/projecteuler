@@ -25,10 +25,10 @@ object Problem_0035 extends Problem {
     val strRep = n.toString
     rotate(strRep, strRep.length, Set())
   }
-  
+
   val candidates = primes.takeWhile { _ < 1000000 }.toSet
 
   def answer = candidates.par.filter {
     n => rotate(n).forall { candidates.contains(_) }
-  } size
+  }.size
 }

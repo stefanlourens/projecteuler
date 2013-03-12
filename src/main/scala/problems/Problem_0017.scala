@@ -66,6 +66,6 @@ object Problem_0017 extends Problem {
         if (numeral.length > 2) numeral.mkString.length + 3
         else numeral.mkString.length
       }
-  } sum
+  }.sum
 
 }

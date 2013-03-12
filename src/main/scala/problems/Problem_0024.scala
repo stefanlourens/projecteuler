@@ -7,6 +7,6 @@ package problems
  */
 object Problem_0024 extends Problem {
 
-  def answer = (0 to 9).mkString.permutations.drop(999999).next.toLong
-  
+  def answer = (0 to 9).mkString.permutations.drop(999999).next().toLong
+
 }

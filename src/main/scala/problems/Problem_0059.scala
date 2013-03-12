@@ -24,6 +24,6 @@ object Problem_0059 extends Problem {
       if (mapXOR(cipher, List(a, b, c)) forall { allChars.contains(_) })
     } yield List(a, b, c)
 
-    mapXOR(cipher, keys(0)) sum
+    mapXOR(cipher, keys(0)).sum
   }
 }

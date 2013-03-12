@@ -12,7 +12,7 @@ object Problem_0001 extends Problem {
       x <- 1 until limit
       if x % 3 == 0 || x % 5 == 0
     } yield x
-  } sum
+  }.sum
 
   def answer = solveFor(1000)
 

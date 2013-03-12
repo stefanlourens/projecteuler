@@ -15,6 +15,6 @@ object Problem_0009 extends Problem {
       if (a + b + c == 1000)
       if ((a * a) + (b * b) == (c * c))
     } yield a * b * c
-  } head
+  }.head
 
 }

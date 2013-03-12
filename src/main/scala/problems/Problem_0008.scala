@@ -35,11 +35,11 @@ object Problem_0008 extends Problem {
       if (numbers.size < 5) List()
       else {
         val currProd: Int = (numbers take 5 map (_.asDigit)).product
-        currProd :: findProducts(numbers.tail)
+        currProd :: findProducts(augmentString(numbers).tail)
       }
     }
 
-    findProducts(numbers) max
+    findProducts(numbers).max
   }
 
 }

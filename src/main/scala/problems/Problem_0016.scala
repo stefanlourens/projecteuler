@@ -8,6 +8,6 @@ package problems
  */
 object Problem_0016 extends Problem {
 
-  def answer = BigInt(2).pow(1000).toString map(_.asDigit) sum
+  def answer = (BigInt(2).pow(1000).toString map (_.asDigit)).sum
 
 }

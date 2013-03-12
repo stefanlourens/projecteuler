@@ -16,7 +16,7 @@ object Problem_0043 extends Problem {
       if (indexes.forall { case (idx, div) => pan.substring(idx, idx + 3).toInt % div == 0 })
     } yield pan.toLong
 
-    numbers sum
+    numbers.sum
   }
 
 }

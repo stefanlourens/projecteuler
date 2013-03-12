@@ -16,5 +16,5 @@ object Problem_0041 extends Problem {
     if (isPrime(perm))
   } yield perm
 
-  def answer = pandigitalPrimes max
+  def answer = pandigitalPrimes.max
 }

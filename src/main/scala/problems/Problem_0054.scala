@@ -121,7 +121,7 @@ object Problem_0054 extends Problem {
   }
 
   def answer = {
-    val deals = Source.fromFile("resources/0054/poker.txt") getLines
+    val deals = Source.fromFile("resources/0054/poker.txt").getLines()
     val hands = deals map {
       row =>
         {

@@ -15,7 +15,7 @@ object Problem_0011 extends Problem {
 
     {
       for {
-        line <- source.getLines
+        line <- source.getLines()
       } yield line split (" ") map (Integer.parseInt(_))
     }.toArray
   }
@@ -24,26 +24,26 @@ object Problem_0011 extends Problem {
     row <- matrix
     (_, idx) <- row.zipWithIndex
     if (idx < 16)
-  } yield row drop (idx) take (4) product
+  } yield (row drop (idx) take (4)).product
 
   lazy val vertical = for {
     (row, rowIdx) <- matrix.zipWithIndex
     (col, colIdx) <- row.zipWithIndex
     if (rowIdx < 16)
-  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx)) product
+  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx)).product
 
   lazy val diagonalLR = for {
     (row, rowIdx) <- matrix.zipWithIndex
     (col, colIdx) <- row.zipWithIndex
     if (rowIdx < 16 && colIdx < 16)
-  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx + offset)) product
+  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx + offset)).product
 
   lazy val diagonalRL = for {
     (row, rowIdx) <- matrix.zipWithIndex
     (col, colIdx) <- row.zipWithIndex
     if (rowIdx < 16 && colIdx > 3)
-  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx - offset)) product
+  } yield (for (offset <- 0 until 4) yield matrix(rowIdx + offset)(colIdx - offset)).product
 
-  def answer = (horizontal ++ vertical ++ diagonalLR ++ diagonalRL) max
+  def answer = (horizontal ++ vertical ++ diagonalLR ++ diagonalRL).max
 
 }

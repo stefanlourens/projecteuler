@@ -8,12 +8,12 @@ package problems
 object Problem_0036 extends Problem {
 
   def answer = 1 until 1000000 filter {
-    n =>
+    n: Int =>
       {
         val str = n.toString
         val bin = n.toBinaryString
 
         str == str.reverse && bin == bin.reverse
       }
-  } sum
+  }.sum
 }

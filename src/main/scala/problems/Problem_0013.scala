@@ -11,10 +11,10 @@ object Problem_0013 extends Problem {
     val source = Source.fromFile("resources/0013/numbers.txt")
 
     for {
-      line <- source.getLines
+      line <- source.getLines()
     } yield BigInt(line)
   }
 
-  def answer = BigInt((numbers sum).toString take 10) 
+  def answer = BigInt((numbers sum).toString take 10)
 
 }

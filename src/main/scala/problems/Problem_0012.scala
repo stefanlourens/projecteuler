@@ -14,7 +14,8 @@ object Problem_0012 extends Problem {
 
   lazy val triangles: Stream[Int] = 1 #:: triangles.zipWithIndex.map { n => n._1 + n._2 + 2 }
 
-  def answer =
-    triangles find { devisorCount(_) > 500 } get
+  def answer = (triangles find {
+    devisorCount(_) > 500
+  }).get
 
 }

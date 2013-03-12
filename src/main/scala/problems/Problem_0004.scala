@@ -16,7 +16,7 @@ object Problem_0004 extends Problem {
       if (product.toString == product.toString.reverse)
     } yield product
 
-    palindromes max
+    palindromes.max
   }
 
 }
