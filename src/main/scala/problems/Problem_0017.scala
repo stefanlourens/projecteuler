@@ -34,7 +34,7 @@ object Problem_0017 extends Problem {
     60 -> "sixty",
     70 -> "seventy",
     80 -> "eighty",
-    90 -> "nighty",
+    90 -> "ninety",
     100 -> "hundred",
     1000 -> "thousand")
 

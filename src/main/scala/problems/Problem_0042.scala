@@ -21,7 +21,7 @@ object Problem_0042 extends Problem {
   }
 
   def answer = words map { _.map(ordinals).sum } filter {
-    n => triangleNumbers takeWhile { _ <= n } contains n
-  }.length
+    n: Int => triangleNumbers takeWhile { _ <= n } contains n
+  } length
 
 }

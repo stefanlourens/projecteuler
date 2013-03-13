@@ -12,11 +12,11 @@ public class Problem_0003 {
 
     /**
      * Its 01:21 on a Saturday, this is going to be "good"
-     * Could not figure out why the initial version was talking so long, 
+     * Could not figure out why the initial version was talking so long,
      * was calculating for all numbers where div < num / 2 instead of sqrt(num) O_o
-     * 
+     *
      */
-    public static long solve() {
+    private static long solve() {
         Stack<Long> factors = determineFactors(num);
 
         while (!factors.empty()) {
@@ -51,15 +51,15 @@ public class Problem_0003 {
     }
 
     private static boolean isPrime(long num) {
-        long devisor = 1;
+        long divisor = 1;
 
         if (num % 2 == 0) {
             return false;
         } else {
-            while (devisor < (Math.sqrt(num))) {
-                devisor += 2;
+            while (divisor < (Math.sqrt(num))) {
+                divisor += 2;
 
-                if (num % devisor == 0) {
+                if (num % divisor == 0) {
                     return false;
                 }
             }

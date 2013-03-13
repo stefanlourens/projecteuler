@@ -15,5 +15,5 @@ object Problem_0036 extends Problem {
 
         str == str.reverse && bin == bin.reverse
       }
-  }.sum
+  } sum
 }

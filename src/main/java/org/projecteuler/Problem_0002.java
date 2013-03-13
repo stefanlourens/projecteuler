@@ -9,7 +9,7 @@ package org.projecteuler;
  */
 public class Problem_0002 {
 
-    public static int solve() {
+    private static int solve() {
         int sum = 0;
 
         for (int p = 1, c = 2, n = 0; n < 4e6; n = p + c, p = c, c = n) {

@@ -10,16 +10,16 @@ import collection.immutable.TreeMap
  */
 object Problem_0089 extends Problem {
 
-  val numerals = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0089/roman.txt") getLines
+  val numerals = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0089/roman.txt").getLines()
   val numeralValues = Map[Char, Int](
     'I' -> 1,
     'V' -> 5,
     'X' -> 10,
-    'L' -> 50,  
+    'L' -> 50,
     'C' -> 100,
     'D' -> 500,
     'M' -> 1000)
-    
+
   val valueNumerals = TreeMap(numeralValues.map { _.swap }.toArray: _*)
   val intPositions = valueNumerals.keys.toList.reverse
 
@@ -38,7 +38,7 @@ object Problem_0089 extends Problem {
       }
     }
 
-    calcTotal(values, List())  
+    calcTotal(values, List())
   }
 
   /*
@@ -60,7 +60,7 @@ object Problem_0089 extends Problem {
             else {
               val diff = nextPos.get - (divisions * divisor)
               val prefix = valueNumerals find { _._1 / diff > 0 }
-              
+
               if (prefix.isDefined && prefix.get._1 / diff < 3) {
               	val divs = prefix.get._1 / diff
               	toNumeral(n % divisor, positions.tail, acc ++ List.fill(divs)(prefix.get._2) :+ valueNumerals(nextPos.get))
@@ -74,7 +74,7 @@ object Problem_0089 extends Problem {
     }
 
     toNumeral(n, intPositions, List())
-  }                 
-  */ 
-
+  }
+  */
+  def answer: Any = ???
 }

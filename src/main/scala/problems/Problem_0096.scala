@@ -8,7 +8,7 @@ import math.floor
  */
 object Problem_0096 extends Problem {
 
-  case class Cell(val value: Int, val row: Int, val col: Int) {
+  case class Cell(value: Int, row: Int, col: Int) {
     def isEmpty: Boolean = value == 0
     def boxNum: Int = {
       val boxCol = floor(col / 3).toInt
@@ -56,7 +56,7 @@ object Problem_0096 extends Problem {
         }
       }
 
-      def neighborExludes(cell: Cell): List[Int] = {
+      def neighborExcludes(cell: Cell): List[Int] = {
         val neighbors = box(cell.boxNum) filter { _ != cell }
         val neighborValues = neighbors filterNot { _.isEmpty } map { _.value }
 
@@ -75,7 +75,7 @@ object Problem_0096 extends Problem {
         1 to 9 filterNot { colValues ++ rowValues ++ neighborValues } toList
       }
 
-      possibleValues(cell) filter { neighborExludes(cell).contains(_) }
+      possibleValues(cell) filter { neighborExcludes(cell).contains(_) }
     }
 
     def solve: Puzzle = {
@@ -84,13 +84,13 @@ object Problem_0096 extends Problem {
         if (emptyCells.isEmpty) this
         else {
           val currCell = emptyCells.head
-          val posibleVals = possibleValues(currCell)
+          val possibleVals = possibleValues(currCell)
 
           val paths = {
-            if (posibleVals.isEmpty) List()
+            if (possibleVals.isEmpty) List()
             else {
               for {
-                path <- patch(currCell, posibleVals)
+                path <- patch(currCell, possibleVals)
               } yield {
                 if (path.isSolved) { println("SOLVED\n" + path.toConsoleString); path }
                 else path.solve
@@ -113,9 +113,9 @@ object Problem_0096 extends Problem {
       //          if (puzzle.isSolved) {println(puzzle.toConsoleString);puzzle }
       //          else puzzle.solve
       //        }
-      //        
+      //
       //        val solutions = findSolutions
-      //        
+      //
       //        if (solutions.isEmpty) new Puzzle("empty", List())
       //        else solutions.head
     }
@@ -173,7 +173,7 @@ object Problem_0096 extends Problem {
   }
 
   private def parse(source: Source) = {
-    val (names, grids) = source.getLines.partition(_ startsWith "Grid")
+    val (names, grids) = source.getLines().partition(_ startsWith "Grid")
     for {
       (name, data) <- (names zip ((grids grouped 9))) toList
     } yield {

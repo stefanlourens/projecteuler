@@ -1,7 +1,5 @@
 package problems
 
-import math.pow
-
 /**
  * http://projecteuler.net/problem=31
  *

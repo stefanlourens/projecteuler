@@ -9,13 +9,13 @@ import math.{ sqrt, round }
  */
 object Problem_0012 extends Problem {
 
-  def devisorCount(n: Int): Int =
+  def divisorCount(n: Int): Int =
     (round(sqrt(n)) to 1 by -1 count (n % _ == 0)) * 2
 
   lazy val triangles: Stream[Int] = 1 #:: triangles.zipWithIndex.map { n => n._1 + n._2 + 2 }
 
   def answer = (triangles find {
-    devisorCount(_) > 500
+    divisorCount(_) > 500
   }).get
 
 }

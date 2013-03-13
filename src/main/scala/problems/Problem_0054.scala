@@ -70,7 +70,7 @@ object Problem_0054 extends Problem {
 
     lazy val (cardsUsed, value): (List[Card], Int) = {
       val hands = List(onePair, twoPair, threeOfAKind, straight, flush, fullHouse, straightFlush, royalFlush)
-      val rank = (hands zipWithIndex).reverse.find { case (rank, _) => rank.isDefined }
+      val rank = (hands zipWithIndex).reverse.find { case (r, _) => r.isDefined }
       if (rank.isDefined) rank.get match { case (c, v) => (c.get, v) }
       else (List(highCard), -1)
     }

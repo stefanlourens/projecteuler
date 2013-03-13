@@ -8,7 +8,7 @@ package problems
 object Problem_0021 extends Problem {
 
   def getDivisorSum(n: Int): Int = {
-    1 until (n.toInt - 1) filter { n % _ == 0 } sum
+    1 until (n - 1) filter { n % _ == 0 } sum
   }
 
   def answer = {

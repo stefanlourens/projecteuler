@@ -28,6 +28,6 @@ object Problem_0018 extends Problem {
   Tree(0, Tree(), Tree())
 
 
-  def answer = ???//pathCountFrom(0, grid.origin)new Numeral(100)
+  def answer = ??? //pathCountFrom(0, grid.origin)new Numeral(100)
 
 }

@@ -6,7 +6,7 @@ import problems._
 class ProblemsTestSuite extends FunSuite {
 
   def companion[T](name: String)(implicit man: Manifest[T]): T =
-    Class.forName(name + "$").getField("MODULE$").get(man.erasure).asInstanceOf[T]
+    Class.forName(name + "$").getField("MODULE$").get(man.runtimeClass).asInstanceOf[T]
 
   val answers = Map(
     1  -> 233168,
@@ -51,7 +51,7 @@ class ProblemsTestSuite extends FunSuite {
 
   for {
     n <- answers.keySet.toList.sorted
-    val className = "problems.Problem_" + format("%04d", n)
+    className = "problems.Problem_" + "%04d".format(n)
   } test(className) {
     assert(companion[Problem](className).answer === answers(n))
   }
