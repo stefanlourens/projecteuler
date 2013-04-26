@@ -9,18 +9,8 @@ import math.{ floor, sqrt }
 object Problem_0003 extends Problem {
 
   def isPrime(n: Long): Boolean = {
-    val primeCache = Set[Long]()
     val maxFactor = floor(sqrt(n)).toInt
-
-    if (primeCache.contains(n)) true
-    else if (n <= 1) false
-    else if (n == 2) true
-    else {
-      if (2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0)) {
-        primeCache + n
-        true
-      } else false
-    }
+    (2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0))
   }
 
   def answer = {
