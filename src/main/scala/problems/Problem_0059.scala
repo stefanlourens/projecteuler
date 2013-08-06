@@ -9,9 +9,9 @@ import io.Source
  */
 object Problem_0059 extends Problem {
 
-  val cipher = Source.fromFile("resources/0059/cipher1.txt").mkString.split(",") map { _.toInt } toList
+  val cipher = Source.fromFile("resources/0059/cipher1.txt").mkString.split(",").map{ _.toInt }.toList
   val allChars = ((' ' to '"') ++ ('\'' to ')') ++ (',' to '.') ++ ('0' to 'z')).map { _.toInt }.toSet
-  val lowerChars = ('a' to 'z').map { _.toInt }
+  val lowerChars = ('a' to 'z').map(_.toInt).toStream
 
   def mapXOR(cipher: List[Int], key: List[Int]): List[Int] =
     (cipher zip Stream.continually(key).flatten).map { case (c, k) => c ^ k }
@@ -21,7 +21,7 @@ object Problem_0059 extends Problem {
       a <- lowerChars
       b <- lowerChars
       c <- lowerChars
-      if (mapXOR(cipher, List(a, b, c)) forall { allChars.contains(_) })
+      if mapXOR(cipher, List(a, b, c)) forall { allChars.contains }
     } yield List(a, b, c)
 
     mapXOR(cipher, keys(0)).sum
