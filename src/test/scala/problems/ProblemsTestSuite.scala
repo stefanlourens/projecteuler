@@ -55,7 +55,15 @@ class ProblemsTestSuite extends FunSuite {
   } test(className) {
     val tr = time(companion[Problem](className).answer)
 
-    println(s"$className took ${tr.duration}ms")
+    val duration = tr.duration.toLong
+
+    val color = duration match {
+      case x if x < 1000 => Console.GREEN
+      case x if x < 2000 => Console.YELLOW
+      case _ => Console.RED
+    }
+
+    println(s"${Console.WHITE}$className took ${color} ${tr.duration}ms")
     assert(tr.result === answers(n))
   }
 
