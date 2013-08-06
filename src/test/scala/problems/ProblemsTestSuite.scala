@@ -63,7 +63,7 @@ class ProblemsTestSuite extends FunSuite {
       case _ => Console.RED
     }
 
-    println(s"${Console.WHITE}$className took ${color} ${tr.duration}ms")
+    println(s"${Console.WHITE}$className took $color${tr.duration}ms")
     assert(tr.result === answers(n))
   }
 
