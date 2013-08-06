@@ -12,8 +12,9 @@ object Problem_0003 extends Problem {
     case 1 => false
     case 2 => true
     case _ => {
-      lazy val maxFactor = floor(sqrt(n)).toInt
-      2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0)
+      val maxFactor = sqrt(n)
+      if (maxFactor.isValidInt) false
+      else 2 #:: (3 to maxFactor.intValue() by 2).toStream forall (n % _ != 0)
     }
   }
 

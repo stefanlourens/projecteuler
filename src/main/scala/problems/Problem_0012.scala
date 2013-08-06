@@ -10,7 +10,7 @@ import math.{ sqrt, round }
 object Problem_0012 extends Problem {
 
   def divisorCount(n: Int): Int =
-    (round(sqrt(n)) to 1 by -1 count (n % _ == 0)) * 2
+    ((round(sqrt(n)) to 1 by -1) count (n % _ == 0)) * 2
 
   lazy val triangles: Stream[Int] = 1 #:: triangles.zipWithIndex.map { n => n._1 + n._2 + 2 }
 

@@ -12,8 +12,8 @@ object Problem_0004 extends Problem {
     val palindromes = for {
       x <- threeDigits
       y <- threeDigits
-      val product = x * y
-      if (product.toString == product.toString.reverse)
+      product = x * y
+      if product.toString() == product.toString().reverse
     } yield product
 
     palindromes.max

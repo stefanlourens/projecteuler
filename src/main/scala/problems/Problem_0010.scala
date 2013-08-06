@@ -14,8 +14,6 @@ object Problem_0010 extends Problem {
     if isPrime(n)
   } yield n
 
-
-
   def answer = {
     primes.takeWhile{ _ < 2000000 }.sum
   }

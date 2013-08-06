@@ -9,10 +9,9 @@ import scala.annotation.tailrec
  */
 object Problem_0005 extends Problem {
 
-  lazy val divisibleRange = 1 to 20
-  
   def answer = {
-    
+    lazy val divisibleRange = 20 to 1 by -1
+
     @tailrec
     def findDivisor(candidate: Int): Int = {
       if (divisibleRange forall (candidate % _ == 0)) candidate

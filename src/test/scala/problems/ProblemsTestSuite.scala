@@ -49,22 +49,30 @@ class ProblemsTestSuite extends FunSuite {
     59 -> 107359
     )
 
+  //Print problems not solved
+  val missingProblems = for {
+    n <- 1 to answers.keySet.max
+    if !answers.contains(n)
+  } yield n
+
+  println(s"${Console.WHITE}Missing problems ${Console.BLUE}${missingProblems.mkString(",")}")
+
   for {
     n <- answers.keySet.toList.sorted
     className = "problems.Problem_" + "%04d".format(n)
   } test(className) {
-    val tr = time(companion[Problem](className).answer)
+      val tr = time(companion[Problem](className).answer)
+      val duration = tr.duration.toLong
 
-    val duration = tr.duration.toLong
+      val color = duration match {
+        case x if x < 2000 => Console.GREEN
+        case x if x < 5000 => Console.YELLOW
+        case _ => Console.RED
+      }
 
-    val color = duration match {
-      case x if x < 1000 => Console.GREEN
-      case x if x < 2000 => Console.YELLOW
-      case _ => Console.RED
+      println(s"${Console.WHITE}$className took $color${duration}ms")
+
+      assert(tr.result === answers(n))
     }
-
-    println(s"${Console.WHITE}$className took $color${tr.duration}ms")
-    assert(tr.result === answers(n))
-  }
 
 }
