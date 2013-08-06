@@ -103,7 +103,7 @@ object Problem_0054 extends Problem {
 
     def <(that: Hand): Boolean = !(this > that)
 
-    override def toString = {
+    override def toString() = {
       val handStr =
         if (royalFlush.isDefined) "Royal Flush"
         else if (straightFlush.isDefined) "Straight Flush"

@@ -8,9 +8,13 @@ import math.{ floor, sqrt }
  */
 object Problem_0003 extends Problem {
 
-  def isPrime(n: Long): Boolean = {
-    val maxFactor = floor(sqrt(n)).toInt
-    (2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0))
+  def isPrime(n: Long): Boolean = n match {
+    case 1 => false
+    case 2 => true
+    case _ => {
+      lazy val maxFactor = floor(sqrt(n)).toInt
+      2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0)
+    }
   }
 
   def answer = {

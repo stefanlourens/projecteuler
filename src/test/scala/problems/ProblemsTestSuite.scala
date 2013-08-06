@@ -53,7 +53,10 @@ class ProblemsTestSuite extends FunSuite {
     n <- answers.keySet.toList.sorted
     className = "problems.Problem_" + "%04d".format(n)
   } test(className) {
-    assert(companion[Problem](className).answer === answers(n))
+    val tr = time(companion[Problem](className).answer)
+
+    println(s"$className took ${tr.duration}ms")
+    assert(tr.result === answers(n))
   }
 
 }

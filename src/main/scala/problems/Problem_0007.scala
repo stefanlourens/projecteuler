@@ -13,7 +13,7 @@ object Problem_0007 extends Problem {
   def answer = {
     val primes = for {
       n <- 2 #:: (3 to Int.MaxValue by 2).toStream
-      if (isPrime(n))
+      if isPrime(n)
     } yield n
 
     primes(10000)

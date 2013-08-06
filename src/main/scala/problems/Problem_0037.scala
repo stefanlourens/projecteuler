@@ -10,21 +10,24 @@ import Problem_0003.isPrime
 object Problem_0037 extends Problem {
 
   def isTruncatablePrime(n: Long): Boolean = {
-    if (!isPrime(n)) false
+    if (n == 1 || !isPrime(n)) false
     else {
-      val str = n.toString
+      val str: String = "" + n
       val truncated = for {
         i <- 1 until str.length
       } yield List(str.drop(i), str.dropRight(i))
 
-      truncated.flatten.par.forall { n => isPrime(n.toInt) }
+      truncated.flatten.sorted.forall { n => isPrime(n.toInt) }
     }
   }
 
   val truncatablePrimes = for {
     n <- (9 to Int.MaxValue by 2).toStream
-    if (isTruncatablePrime(n))
+    if isTruncatablePrime(n)
   } yield n
 
-  def answer = truncatablePrimes take 11 sum
+
+  def answer = {
+    (truncatablePrimes take 11).sum
+  }
 }
