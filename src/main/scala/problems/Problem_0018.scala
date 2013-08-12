@@ -1,5 +1,8 @@
 package problems
 
+import io.Source
+
+
 /**
  * http://projecteuler.net/problem=18
  *
@@ -7,27 +10,24 @@ package problems
  */
 object Problem_0018 extends Problem {
 
-  val triangle =
-    """
-	3
-	7 4
-	2 4 6
-	8 5 9 3
-    """
+  def findMaxPathSum(triangle: Array[Array[Int]]): Int = {
+    for {
+      row <- triangle.length - 2 to 0 by -1
+      col <- 0 until triangle(row).length
+    } {
+      val curr = triangle(row)(col)
+      val left = triangle(row + 1)(col)
+      val right = triangle(row + 1)(col + 1)
 
+      triangle(row).update(col, curr + (left max right))
+    }
 
-  object Tree {
-  	def apply() = EmptyTree()
-  	def apply(value: Int, left: Tree, right: Tree) = new NonEmptyTree(value, left, right)
+    triangle(0)(0)
   }
-  sealed trait Tree
-  case class NonEmptyTree(value: Int, left: Tree, right: Tree) extends Tree
-  case class EmptyTree extends Tree
 
+  val triangle: Array[Array[Int]] =
+    Source.fromFile("resources/0018/triangle.txt").getLines().toArray map{ _.split(" ").map{ _.toInt } }
 
-  Tree(0, Tree(), Tree())
-
-
-  def answer = ??? //pathCountFrom(0, grid.origin)new Numeral(100)
+  def answer = findMaxPathSum(triangle)
 
 }

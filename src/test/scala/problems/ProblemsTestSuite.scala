@@ -26,6 +26,7 @@ class ProblemsTestSuite extends FunSuite {
     15 -> 137846528820L,
     16 -> 1366,
     17 -> 21124,
+    18 -> 1074,
     19 -> 171,
     20 -> 648,
     21 -> 31626,
@@ -46,7 +47,9 @@ class ProblemsTestSuite extends FunSuite {
     54 -> 376,
     55 -> 249,
     56 -> 972,
-    59 -> 107359
+    59 -> 107359,
+    67 -> 7273
+
     )
 
   //Print problems not solved
