@@ -3,11 +3,10 @@ package problems
 import io.Source
 import problems.Problem_0018.findMaxPathSum
 
-
 /**
- * http://projecteuler.net/problem=18
+ * http://projecteuler.net/problem=67
  *
- * Find the maximum total from top to bottom of the triangle below
+ * Find the maximum total from top to bottom in triangle.txt
  */
 object Problem_0067 extends Problem {
 
