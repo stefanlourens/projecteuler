@@ -48,7 +48,8 @@ class ProblemsTestSuite extends FunSuite {
     55 -> 249,
     56 -> 972,
     59 -> 107359,
-    67 -> 7273
+    67 -> 7273,
+    89 -> 743
 
     )
 

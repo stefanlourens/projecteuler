@@ -1,7 +1,8 @@
 package problems
 
 import io.Source
-import collection.immutable.TreeMap
+import scala.collection.SortedMap
+import scala.annotation.tailrec
 
 /**
  * http://projecteuler.net/problem=89
@@ -10,7 +11,8 @@ import collection.immutable.TreeMap
  */
 object Problem_0089 extends Problem {
 
-  val numerals = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0089/roman.txt").getLines()
+  val numerals = Source.fromFile("resources/0089/roman.txt").getLines()
+
   val numeralValues = Map[Char, Int](
     'I' -> 1,
     'V' -> 5,
@@ -18,63 +20,77 @@ object Problem_0089 extends Problem {
     'L' -> 50,
     'C' -> 100,
     'D' -> 500,
-    'M' -> 1000)
+    'M' -> 1000
+   )
 
-  val valueNumerals = TreeMap(numeralValues.map { _.swap }.toArray: _*)
-  val intPositions = valueNumerals.keys.toList.reverse
+  val subtractiveNumerals = SortedMap[Int, String](
+    900 -> "CM",
+    400 -> "CD",
+    90 -> "XC",
+    40 -> "XL",
+    9 -> "IX",
+    4 -> "IV"
+  )(Ordering[Int].reverse)
+
 
   def numeralToInt(numeral: String): Int = {
-    val values = numeral map numeralValues toList
-
-    def calcTotal(values: List[Int], acc: List[Int]): Int = {
-      if (values.isEmpty) acc sum
+    @tailrec
+    def calcTotal(numeral: String, lastMax: Int, acc: Int): Int = {
+      if (numeral.isEmpty) acc
       else {
-        val head = values.head
-        val tail = values.tail
-        if (!tail.isEmpty && head < tail.head)
-          if (tail.tail.isEmpty) calcTotal(List(), (tail.head - head) :: acc)
-          else calcTotal(tail.tail, tail.head - head :: acc)
-        else calcTotal(tail, head :: acc)
+        val curr = numeralValues(numeral.head)
+
+        if (curr >= lastMax) {
+          calcTotal(numeral.tail, curr, acc + curr)
+        } else {
+          calcTotal(numeral.tail, lastMax, acc - curr)
+        }
       }
     }
 
-    calcTotal(values, List())
+    calcTotal(numeral.reverse, 0, 0)
   }
 
-  /*
+
   def toNumeral(n: Int): String = {
-    def toNumeral(n: Int, positions: List[Int], acc: List[Char]): String = {
-      if (n <= 0) acc mkString
-      else {
-        val divisor = positions.head
-        val divisions = n / divisor
-
-        if (divisions == 0) toNumeral(n, positions.tail, acc)
+      @tailrec
+      def toNumeral(n: Int, pos: SortedMap[Int, Char], acc: String): String = {
+        if (n == 0) acc
         else {
-          val updatedAcc = acc ++ List.fill(divisions)(valueNumerals(divisor));
+          val (intVal, numeral) = pos.head
+          val divs = n / intVal
+          val remain = n % intVal
+          val newAcc = acc + (numeral.toString() * divs)
 
-          if (divisor != intPositions.max) {
-            val nextPos = intPositions.reverse.dropWhile { _ <= divisor }.headOption
+          lazy val nextPos = if (!pos.tail.isEmpty) pos.tail.head._1 else 0
+          lazy val subPossibles = subtractiveNumerals.filter{ case (i, num) => i > nextPos && remain / i > 0 }
+          lazy val sub = {
+            if (!subPossibles.isEmpty)
+              Option(subPossibles.map { case (i, num) => remain / i  -> (i, num)}.min)
+            else None
+          }
 
-            if (nextPos.isEmpty) toNumeral(n % divisor, positions.tail, updatedAcc)
-            else {
-              val diff = nextPos.get - (divisions * divisor)
-              val prefix = valueNumerals find { _._1 / diff > 0 }
-
-              if (prefix.isDefined && prefix.get._1 / diff < 3) {
-              	val divs = prefix.get._1 / diff
-              	toNumeral(n % divisor, positions.tail, acc ++ List.fill(divs)(prefix.get._2) :+ valueNumerals(nextPos.get))
-              } else toNumeral(n % divisor, positions.tail, updatedAcc)
-
-            }
-          } else toNumeral(n % divisor, positions.tail, updatedAcc)
+          if (subtractiveNumerals.contains(remain)) {
+            newAcc + subtractiveNumerals(remain)
+          } else if (sub.isDefined) {
+            val (intV, numV) = sub.get._2
+            toNumeral(remain - intV, pos.tail, newAcc + numV)
+          } else {
+            toNumeral(remain, pos.tail, newAcc)
+          }
         }
       }
 
-    }
+    toNumeral(n, SortedMap(numeralValues.map { _.swap }.toArray: _*)(Ordering[Int].reverse), "")
 
-    toNumeral(n, intPositions, List())
   }
-  */
-  def answer: Any = ???
+
+  def answer: Any = numerals.map {
+    numeral => {
+      val currLength = numeral.size
+      val newLength = toNumeral(numeralToInt(numeral)).size
+      currLength - newLength
+    }
+   }.sum
+
 }
