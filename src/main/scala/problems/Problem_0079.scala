@@ -1,6 +1,8 @@
 package problems
 
 import io.Source
+import scala.collection.mutable
+
 /**
  * http://projecteuler.net/problem=79
  *
@@ -9,16 +11,19 @@ import io.Source
  */
 object Problem_0079 extends Problem {
 
-  val logs = Source.fromFile("/Users/stefan/Projects/Personal/projecteuler/resources/0079/keylog.txt").getLines().toList
+  val logs = Source.fromFile("resources/0079/keylog.txt").getLines().toList
+  val valsBefore = new mutable.HashMap[Char, Set[Char]]()
 
-  val charWithIndexSum = logs.flatMap{ _.zipWithIndex } groupBy{ _._1 } map {
-  	case (k, v) => {
-  		(k, v.foldLeft(0){ (s, c) => s + c._2 } - v.length, v.foldLeft(0){ (s, c) => s + c._2 })
-  	}
-  } toList
+  def answer = {
+    for {
+      row <- logs
+      n <- 0 until row.size
+    } {
+      val c = row(n)
+      valsBefore.put(c, valsBefore.getOrElse(c, Set()) ++ row.dropRight(row.size - n).toSet)
+    }
 
-  charWithIndexSum.sortBy( _._2 ) map(_._1) mkString
-
-  def answer = ??? //pathCountFrom(0, grid.origin)new Numeral(100)
+    valsBefore.toList.sortBy(_._2.size).map(_._1).mkString.toInt
+  }
 
 }
