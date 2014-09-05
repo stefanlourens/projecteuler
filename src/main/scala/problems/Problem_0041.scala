@@ -12,8 +12,8 @@ object Problem_0041 extends Problem {
   val pandigitalPrimes = for {
     n <- 9 to 1 by -1
     permStr <- (1 to n).mkString.permutations
-    val perm = permStr.toInt
-    if (isPrime(perm))
+    perm = permStr.toInt
+    if isPrime(perm)
   } yield perm
 
   def answer = pandigitalPrimes.max

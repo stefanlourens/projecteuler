@@ -1,5 +1,7 @@
 package problems
 
+import problems.Problem_0021.getDivisorSum
+
 /**
  * http://projecteuler.net/problem=23
  *
@@ -7,17 +9,23 @@ package problems
  */
 object Problem_0023 extends Problem {
 
-  def getDivisorSum(n: Int): Int = {
-    1 until (n - 1) filter { n % _ == 0 } sum
-  }
+  val limit = 28123
+  def isAbundant(n: Int): Boolean = getDivisorSum(n) > n
+
+  lazy val abundantNumbers = for {
+      n <- 12 to limit
+      if isAbundant(n)
+    } yield n
 
   def answer = {
-    val nums = {
-      for {
-        n <- 1 to 10000
-      } yield n -> getDivisorSum(n)
-    }.toMap.withDefaultValue(0)
+    val sums = for {
+      a <- abundantNumbers
+      b <- abundantNumbers
+    } yield a + b
 
-    (nums filter { case (n, divSum) => n != divSum && nums(divSum) == n }).keys.sum
+    println(sums.length)
+
+    (1 to limit filterNot(sums.contains(_))).sum
   }
+
 }

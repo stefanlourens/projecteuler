@@ -8,12 +8,12 @@ package problems
 object Problem_0028 extends Problem {
 
   //Compute the diagonals of the grid
-  val diagonals: Stream[Int] = {
+  val diagonals: Stream[Long] = {
     var lastNum = 1
     var addCount = 0
     var add = 2
 
-    def nextNum(): Stream[Int] = {
+    def nextNum(): Stream[Long] = {
       if (addCount == 4) {
         addCount = 0
         add = add + 2
@@ -24,7 +24,7 @@ object Problem_0028 extends Problem {
       lastNum #:: nextNum()
     }
 
-    1 #:: nextNum()
+    1l #:: nextNum()
   }
 
   def answer = (diagonals take ((1001 * 2) - 1)).sum
