@@ -1,5 +1,7 @@
 package problems
 
+import java.lang.Math.sqrt
+
 /**
  * http://projecteuler.net/problem=21
  *
@@ -8,7 +10,8 @@ package problems
 object Problem_0021 extends Problem {
 
   def getDivisorSum(n: Int): Int = {
-    (1 to (n / 2).ceil.intValue()).filter{ n % _ == 0 }.sum
+    val divisors: Seq[Int] = (1 to sqrt(n).toInt).filter{ n % _ == 0 }
+    (divisors ++ (divisors drop 1 map(n / _))).toSet.sum
   }
 
   def answer = {

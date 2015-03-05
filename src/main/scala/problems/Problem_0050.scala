@@ -1,60 +1,37 @@
 package problems
 
-import math.{floor, sqrt}
-import Problem_0003.isPrime
+import Problem_0010.primes
 
 /**
  * http://projecteuler.net/problem=50
- * 
+ *
  * Which prime, below one-million, can be written as the sum of the most consecutive primes?
  */
 object Problem_0050 extends Problem {
 
-  def primesFrom(n: Int) = for {
-    n <- (n to Int.MaxValue by 2).toStream
-    if (isPrime(n))
-  } yield n
+  val primesBelow = 41
+  val primeRange = primes takeWhile(_ < primesBelow)
 
-  val fourDigitPrimes = primesFrom(1485).takeWhile { _ < 10000 }
-  
-    def isPrime(n: Long) = {
-    val primeCache = Set[Long]()
-    val maxFactor = floor(sqrt(n)).toInt
-
-    if (primeCache.contains(n)) true
-    else if (n <= 1) false
-    else if (n == 2) true
-    else {
-      if (2 #:: (3 to maxFactor by 2 toStream) forall (n % _ != 0)) {
-        primeCache + n
-        true
-      } else false
+  def calcPrimeSumsFor(prime: Long): Int = {
+    def calcPrimeSumsFor(prime: Long, primesLeft: List[Long], count: Int, max: Int): Int = {
+      val sum = primesLeft.take(count).sum
+        if (sum == prime) calcPrimeSumsFor(prime, primesLeft.tail, 0, if (count > max) count else max)
+      else if (sum > prime || count > primesLeft.size || max > primesLeft.size) calcPrimeSumsFor(prime, primesLeft.tail, 0, max)
+      else if (primesLeft.isEmpty || max >= primesLeft.size) max
+      else calcPrimeSumsFor(prime, primesLeft, count + 1, max)
     }
+
+    calcPrimeSumsFor(prime, primeRange.takeWhile(_ < prime).toList, 0, 0)
   }
 
-  val primes = for {
-    n <- 2 #:: (3 to Int.MaxValue by 2).toStream
-    if (isPrime(n))
-  } yield n
 
-  //Candidate sums
-  val primeCandidates = primes dropWhile { _ < 1000 } takeWhile { _ < 1000000 }
-
-  primeCandidates map {
-    p =>
-      {
-        (p, primes takeWhile { _ < p })
-      }
+  def answer = {
+    0
   }
+//    2 + 3 + 5 + 7 + 11 + 13 = 41
+//
+//    val primeSums: (Long, Int) = primeRange.foldLeft((0l, 0)){ case ((sum, count), prime) => (prime + sum, count + 1) }
+//
+//    primeSums
 
-  primes slice (3, 24) toList
-
-  isPrime(953L)
-  sqrt(953)
-  
-  
-  //@TODO : Find numbers with commons difference
-
-  def answer = ???
-  
 }

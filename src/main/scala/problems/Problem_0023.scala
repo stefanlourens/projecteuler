@@ -1,6 +1,6 @@
 package problems
 
-import problems.Problem_0021.getDivisorSum
+import java.lang.Math._
 
 /**
  * http://projecteuler.net/problem=23
@@ -10,6 +10,12 @@ import problems.Problem_0021.getDivisorSum
 object Problem_0023 extends Problem {
 
   val limit = 28123
+
+  def getDivisorSum(n: Int): Int = {
+    val divisors: Seq[Int] = (1 to sqrt(n).toInt).filter{ n % _ == 0 }
+    (divisors ++ (divisors drop 1 map(n / _))).toSet.sum
+  }
+
   def isAbundant(n: Int): Boolean = getDivisorSum(n) > n
 
   lazy val abundantNumbers = for {
@@ -18,14 +24,12 @@ object Problem_0023 extends Problem {
     } yield n
 
   def answer = {
-    val sums = for {
+    val sums = (for {
       a <- abundantNumbers
       b <- abundantNumbers
-    } yield a + b
+    } yield a + b).toSet
 
-    println(sums.length)
-
-    (1 to limit filterNot(sums.contains(_))).sum
+    (1 to limit filterNot sums.contains).sum
   }
 
 }
