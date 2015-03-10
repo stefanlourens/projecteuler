@@ -8,17 +8,29 @@ import math.pow
  */
 object Problem_0030 extends Problem {
 
-//  val powers = (0 to 9).mkString.map { n => n -> pow(n.asDigit, 5).toInt }.toMap
-//
-//
-//  def answer = {
-//    val possibles = 2 to Int.MaxValue map {
-//      n => n -> n.toString.map(c => powers(c)).sum
-//    }
-//
-//    possibles.filter{ case (n, sum) => n == sum }.map(_._2).sum
-//  }
+  val powers: Map[Int, Int] = (0 to 9).map { n => n -> pow(n, 5).toInt }.toMap
+  val maxDigitValue = powers(9)
+  val maxDigits = (1 to 10 find (d => maxDigitValue * d < pow(10, d))).get
+  val maxValue = maxDigitValue * maxDigits
 
-  def answer = 0
+  def toPowers(n: Int): Int = {
+    (split(n) map powers).sum
+  }
+
+  def split(n: Int): List[Int] = {
+    if (n == 0) List(0)
+    else {
+      (Stream.iterate(n)(_ / 10) takeWhile (_ != 0) map (_ % 10)).toList.reverse
+    }
+  }
+
+  def answer = {
+    val nums = for {
+      n <- 10 to maxValue
+      if n == toPowers(n)
+    } yield n
+
+    nums.sum
+  }
 
 }

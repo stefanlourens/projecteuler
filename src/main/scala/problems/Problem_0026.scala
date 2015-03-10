@@ -23,7 +23,7 @@ object Problem_0026 extends Problem {
     val base = BigDecimal(10)
     val one = BigDecimal(1)
 
-     1 to denominator find(base.pow(_) % BigDecimal(denominator) == one)
+     1 until denominator find(base.pow(_) % BigDecimal(denominator) == one)
   }
 
   def answer = {
