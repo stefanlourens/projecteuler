@@ -1,30 +1,35 @@
 package problems
 
+import problems.Problem_0030.toDigits
+
+import scala.math._
+
 /**
  * http://projecteuler.net/problem=34
  *
+ * Find the sum of all numbers which are equal to the sum of the factorial of their digits.
  */
 object Problem_0034 extends Problem {
 
-  implicit class Factorable(val n: Int) extends AnyVal {
-    def ! = (BigInt(1) to BigInt(n)).foldLeft(BigInt(1)) { _ * _ }
+  val factorials = (0 to 9 map (n => n -> factorial(n))).toMap
+  val maxDigitValue = factorial(9)
+  val maxDigits = (1 to 10 find (d => maxDigitValue * d < pow(10, d))).get
+  val maxValue = maxDigitValue * maxDigits
+
+  def factorial(n: Int): Int = {
+    if (n == 0) 1
+    else (1 to abs(n)).product
   }
 
-  val factorials = {
-    0 to 9 map { n:Int => ((n + "").charAt(0), n!) }
-  }.toMap
-
-  val numbers = BigInt(10) to BigInt(Int.MaxValue) toStream
+  def factorialSum(n: Int): Int = (toDigits(n) map factorial).sum
 
 
-  for {
-    number <- numbers
-    if (number == number.toString.map(factorials).sum)
-  } yield number
+  def answer = {
+    val nums = for {
+      n <- 10 to maxValue
+      if n == factorialSum(n)
+    } yield n
 
-  numbers map { n =>
-      (n, n.toString.map(factorials).sum)
-  } filter{ case (x, y) => x == y} foreach println
-
-  def answer = 0
+    nums.sum
+  }
 }
