@@ -14,10 +14,10 @@ object Problem_0030 extends Problem {
   val maxValue = maxDigitValue * maxDigits
 
   def toPowers(n: Int): Int = {
-    (split(n) map powers).sum
+    (toDigits(n) map powers).sum
   }
 
-  def split(n: Int): List[Int] = {
+  def toDigits(n: Int): List[Int] = {
     if (n == 0) List(0)
     else {
       (Stream.iterate(n)(_ / 10) takeWhile (_ != 0) map (_ % 10)).toList.reverse
