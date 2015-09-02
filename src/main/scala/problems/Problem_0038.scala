@@ -1,30 +1,25 @@
 package problems
 
 /**
- * http://projecteuler.net/problem=32
+ * http://projecteuler.net/problem=38
  *
- * Find the sum of all products whose multiplicand/multiplier/product identity can be written as a 1 through 9 pandigital.
+ * What is the largest 1 to 9 pandigital 9-digit number that can be formed as the
+ * concatenated product of an integer with (1,2, ... , n) where n > 1?
  */
 object Problem_0038 extends Problem {
 
-  def toInt(positional: Seq[Int]): Int = {
-    require(positional.forall(_ < 10))
-    (positional.reverse.zipWithIndex map { case (n, i) => n * math.pow(10, i).toInt}).sum
+  def isPandigital(n: String): Boolean = {
+    n.length == 9 && (1 to 9 forall (pdn => n.contains(pdn.toString)))
   }
 
-  def answer = {
-    val permutations = (1 to 9).permutations
+  def toInt = Problem_0032.toInt _
 
-    val products = for {
-      permutation <- permutations
-      x <- 1 to 3
-      y <- 1 to 4
-      if x < y
-      product = toInt(permutation.take(x)) * toInt(permutation.drop(x).take(y))
-      if product == toInt(permutation.drop(x + y))
-    } yield product
 
-    products.toSet.sum
-  }
+//  Problem_0032.toInt()
+//  Problem_0030.toDigits()
 
+
+
+  def answer =
+  (100 to 999 map(n => 1 to 3 map (_ * n)) filter(p => isPandigital(p.mkString)) map(toInt(_))).max
 }

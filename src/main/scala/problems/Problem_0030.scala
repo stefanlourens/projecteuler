@@ -18,10 +18,8 @@ object Problem_0030 extends Problem {
   }
 
   def toDigits(n: Int): List[Int] = {
-    if (n == 0) List(0)
-    else {
-      (Stream.iterate(n)(_ / 10) takeWhile (_ != 0) map (_ % 10)).toList.reverse
-    }
+    if (n < 10) List(n)
+    else (Stream.iterate(n)(_ / 10) takeWhile (_ != 0) map (_ % 10)).toList.reverse
   }
 
   def answer = {

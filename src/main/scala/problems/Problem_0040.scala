@@ -10,7 +10,7 @@ object Problem_0040 extends Problem {
 
   def answer = {
 
-    val num = Stream.iterate(1)(_ + 1).take(1000000).mkString
+    val num = Stream.from(1).take(1000000).mkString
     (Stream.iterate(1)(_ * 10) takeWhile ( _ <= 1000000) map (n => num.charAt(n - 1).asDigit)).product
   }
 }
