@@ -33,7 +33,9 @@ object Problem_0019 extends Problem {
       day <- 1 to getNumDays(year, month)
     } yield day
 
-    days zip (Stream.continually(daysOfWeek).flatten) count { case (dayOfMonth, dayOfWeek) => dayOfMonth == 1 && dayOfWeek == 6 }
+    days zip Stream.continually(daysOfWeek).flatten count { case (dayOfMonth, dayOfWeek) =>
+      dayOfMonth == 1 && dayOfWeek == 6
+    }
   }
 
 }
